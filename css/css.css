@@ -1,0 +1,204 @@
+/* variable declarations */
+:root {
+    --myapp-color-background: limegreen;
+    --myapp-header-height: 60px;
+    --myapp-header-bg: #fff;
+    --myapp-footer-height: 50px;
+    --myapp-footer-bg: #fff;
+    --myapp-main-bg: #fff;
+    --myapp-imgbutton-size: 40px;
+    --myapp-img-bg-size: 30px 30px;
+    --myapp-default-space: 10px;
+    --myapp-border-thickness: 2px;
+    --myapp-li-height: 65px;
+    --myapp-li-font-size: 18pt;
+    --myapp-heading-font-size: 20pt;
+    --myapp-li-image-width-height: 45px;
+    --myapp-tile-img-size: 80px;
+
+}
+
+html, body {
+    background-color: var(--myapp-color-background);
+    margin: 0px;
+    font-family: "Avenir Medium", sans-serif;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
+
+/* block text selection */
+
+* {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+header{
+    height: var(--myapp-header-height);
+    background-color: var(--myapp-header-bg);
+    border-bottom: solid var(--myapp-border-thickness) grey;
+
+}
+
+main{
+    /*Gesamthöhe der Anzeigefläche- (Höhe Header + hoehe Footer + Border der Footer/Header)*/
+    height: calc(100vh - (var(--myapp-header-height) + var(--myapp-footer-height) + (2*var(--myapp-border-thickness))));
+    background-color: var(--myapp-main-bg);
+    overflow-y: scroll;
+
+}
+
+footer{
+    height: var(--myapp-footer-height);
+    background: var(--myapp-footer-bg);
+    border-top: solid var(--myapp-border-thickness) orange;
+}
+
+header h1{
+    display: inline-block;
+    margin: 0;
+    font-weight: normal;
+    line-height: 60px;
+    text-transform: uppercase;
+    font-size: var(--myapp-heading-font-size);
+}
+
+.left-aligned{
+    float: left;
+}
+
+.right-aligned{
+    float: right;
+}
+
+.myapp-img-button{
+    background-color: transparent;
+    font-size: 0;
+    border: none;
+    background-position: center;
+    background-size: var(--myapp-img-bg-size);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    filter: invert(50%);
+}
+
+.menu-img{
+    background-image: url("./img/png/menu_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.add-img{
+    background-image: url("./img/png/add_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.tile-view-img{
+    background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.refresh-img{
+    background-image: url("./img/png/sync_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.logout-img{
+    background-image: url("./img/png/logout_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.edit-img{
+    background-image: url("./img/png/edit_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+header button{
+    margin-top: calc((var(--myapp-header-height) - var(--myapp-imgbutton-size))/2);
+}
+
+footer button{
+    margin-top: calc((var(--myapp-footer-height) - var(--myapp-imgbutton-size))/2);
+}
+
+/*Listview*/
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+
+li{
+
+    position: relative;
+    height: var(--myapp-li-height);
+    border-bottom: 1px solid rgba(120, 120, 120);
+    line-height: var(--myapp-li-height);
+    padding: 0 0 0 var(--myapp-default-space);
+}
+
+li h2{
+    font-weight: normal;
+    font-size: var(--myapp-li-font-size);
+    margin: 0 var(--myapp-default-space);
+}
+
+li .myapp-img-button{
+    margin-top: calc((var(--myapp-li-height) - var(--myapp-imgbutton-size)) / 2);
+}
+
+li img{
+    height: var(--myapp-li-image-width-height);
+    width: var(--myapp-li-image-width-height);
+    margin-top: calc((var(--myapp-li-height) - var(--myapp-li-image-width-height)) / 2);
+    object-fit: cover;
+}
+
+.myapp-tiles li *:not(img){
+    display: none;
+}
+
+.myapp-tiles li{
+    margin-left: var(--myapp-default-space);
+    margin-top: var(--myapp-default-space);
+    display: inline-block;
+    border: none;
+    --myapp-tiles-columns: 4;
+    --myapp-tile-size: calc((100vw - ((var(--myapp-tiles-columns) + 1) * var(--myapp-default-space))) / (var(--myapp-tiles-columns)));
+    width: var(--myapp-tile-size);
+    height: var(--myapp-tile-size);
+    padding: 0;
+    float: left;
+}
+
+.myapp-tiles img{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+li a{
+    font-size: 8px;
+    margin-bottom: 10px;
+}
+
+
+
+@media (min-width:34em) and (max-width:69em) {
+    .myapp-tiles li{
+        --myapp-tiles-columns: 5;
+        --myapp-tile-size: calc((100vw - ((var(--myapp-tiles-columns) + 1) * var(--myapp-default-space))) / (var(--myapp-tiles-columns)));
+        width: var(--myapp-tile-size);
+        height: var(--myapp-tile-size);
+
+    }
+}
+
+@media (min-width:70em) {
+    .myapp-tiles li{
+        --myapp-tiles-columns: 8;
+        --myapp-tile-size: calc((100vw - ((var(--myapp-tiles-columns) + 1) * var(--myapp-default-space))) / (var(--myapp-tiles-columns)));
+        width: var(--myapp-tile-size);
+        height: var(--myapp-tile-size);
+
+    }
+}
