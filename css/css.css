@@ -19,13 +19,20 @@
 }
 
 html, body {
-    background-color: var(--myapp-color-background);
     margin: 0px;
     font-family: "Avenir Medium", sans-serif;
     width: 100%;
     max-width: 100%;
     height: 100%;
     max-height: 100%;
+}
+
+html{
+    background-color: var(--myapp-color-background);
+}
+
+body{
+    background-color: #fff;
 }
 
 /* block text selection */
@@ -48,7 +55,22 @@ main{
     height: calc(100vh - (var(--myapp-header-height) + var(--myapp-footer-height) + (2*var(--myapp-border-thickness))));
     background-color: var(--myapp-main-bg);
     overflow-y: scroll;
+    overflow-x: hidden;
+    opacity: 1;
+    transition: opacity 1s ease-out;
 
+
+}
+
+.puffer{
+    width: 100%;
+    height: 5vw;
+    background: var(--myapp-grey);
+}
+
+main.myapp-faded{
+    opacity: 0;
+    transition: opacity 2s ease-in;
 }
 
 footer{
@@ -80,10 +102,10 @@ header h1{
     border: none;
     background-position: center;
     background-size: var(--myapp-img-bg-size);
-    width: 40px;
-    height: 40px;
+    width: var(--myapp-imgbutton-size);
+    height: var(--myapp-imgbutton-size);
     background-repeat: no-repeat;
-    filter: invert(50%);
+    filter: invert(60%);
 }
 
 .menu-img{
@@ -94,8 +116,12 @@ header h1{
     background-image: url("./img/png/add_FILL0_wght400_GRAD0_opsz24.png");
 }
 
-.tile-view-img{
+.tile-view-img[tile-view="hidden"]{
     background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.tile-view-img[tile-view="visible"]{
+    background-image: url("./img/png/list_FILL0_wght400_GRAD0_opsz24.png");
 }
 
 .refresh-img{
@@ -106,9 +132,7 @@ header h1{
     background-image: url("./img/png/logout_FILL0_wght400_GRAD0_opsz24.png");
 }
 
-.edit-img{
-    background-image: url("./img/png/edit_FILL0_wght400_GRAD0_opsz24.png");
-}
+
 
 header button{
     margin-top: calc((var(--myapp-header-height) - var(--myapp-imgbutton-size))/2);
@@ -127,24 +151,82 @@ ul{
 }
 
 
-li{
+.myapp-li-information-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: calc(100% - 1px);
+}
 
-    position: relative;
+.myapp-li-information-wrapper div:not(.myapp-times-played-wrapper){
+    height: calc(var(--myapp-li-height)/3);
+    padding: 0 var(--myapp-default-space);
+}
+
+.myapp-origin, .myapp-title-date{
+    font-size: var(--myapp-text-xs);
+    color: var(--myapp-grey);
+    text-decoration: none;
+    margin-top: var(--myapp-default-space);
+}
+
+
+.myapp-times-played-img{
+    height: calc((var(--myapp-li-height)/3) - var(--myapp-default-space));
+    width: calc((var(--myapp-li-height)/3) - var(--myapp-default-space));
+    filter: invert(60%);
+    margin: 0;
+}
+
+.myapp-times-played-txt{
+    margin: 0;
+    color: var(--myapp-grey);
+    font-size: var(--myapp-text-xs);
+}
+
+.myapp-times-played-wrapper {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.inline{
+    width: 50px;
+    padding: 0;
+}
+
+.myapp-li-options-img{
+    height: 15px;
+    width: 15px;
+    background-size: cover;
+    background-image: url("/css/img/png/more_vert_FILL0_wght400_GRAD0_opsz24.png");
+    background-color: transparent;
+    filter: invert(60%);
+    border: none;
+    padding-top: 2px;
+    background-repeat: no-repeat;
+}
+
+
+
+li{
     height: var(--myapp-li-height);
     border-bottom: 1px solid rgba(120, 120, 120);
-    line-height: var(--myapp-li-height);
     padding: 0 0 0 var(--myapp-default-space);
 }
+
 
 li h2{
     font-weight: normal;
     font-size: var(--myapp-li-font-size);
-    margin: 0 var(--myapp-default-space);
+    margin: 3px 0 0 0;
 }
 
 li .myapp-img-button{
-    margin-top: calc((var(--myapp-li-height) - var(--myapp-imgbutton-size)) / 2);
+   margin-top: calc((var(--myapp-li-height) - var(--myapp-imgbutton-size)));
 }
+
+
 
 li img{
     height: var(--myapp-li-image-width-height);
@@ -153,11 +235,25 @@ li img{
     object-fit: cover;
 }
 
-.myapp-tiles li *:not(img){
+/*.myapp-tiles li *:not(img){
+    display: none;
+}*/
+
+.myapp-tiles .myapp-li-information-wrapper div *:not(button){
     display: none;
 }
 
+.myapp-tiles .myapp-li-options-img{
+    position: absolute;
+    left: 70%;
+    bottom: 7%;
+    width: 25px;
+    height: 25px;
+    filter: invert(100%);
+}
+
 .myapp-tiles li{
+    position: relative;
     margin-left: var(--myapp-default-space);
     margin-top: var(--myapp-default-space);
     display: inline-block;
@@ -174,11 +270,6 @@ li img{
     height: 100%;
     width: 100%;
     margin: 0;
-}
-
-li a{
-    font-size: 8px;
-    margin-bottom: 10px;
 }
 
 
