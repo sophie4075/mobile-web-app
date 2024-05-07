@@ -19,13 +19,14 @@
     <button class="myapp-img-button menu-img left-aligned" id="menu">Menu</button>
     <h1>Medien</h1>
     <button class="myapp-img-button add-img right-aligned" id="add">add</button>
-    <button class="myapp-img-button tile-view-img right-aligned" id="view">tile view</button>
+    <button class="myapp-img-button tile-view-img right-aligned" id="view" tile-view="hidden">tile view</button>
 </header>
 <main>
     <div class="puffer"></div>
     <ul id="track-list">
-        <li>
-            <img class="left-aligned" src="data/img/jpeg/100_100.jpeg" alt="album cover">
+        <template>
+        <li class="track-list-items">
+            <img class="left-aligned album_cover" src="data/img/jpeg/100_100.jpeg" alt="album cover">
             <div class="myapp-li-information-wrapper">
                 <div>
                     <a href="https://loremipsum.io" class="myapp-origin left-aligned">lorempixel.com</a>
@@ -43,54 +44,13 @@
                     <button class="myapp-li-options-img  right-aligned"></button>
                 </div>
             </div>
-
         </li>
-        <li>
-            <img class="left-aligned" src="data/img/jpeg/100_200.jpeg" alt="album cover">
-            <div class="myapp-li-information-wrapper">
-                <div>
-                    <a href="https://loremipsum.io" class="myapp-origin left-aligned">lorempixel.com</a>
-                    <time class="myapp-title-date right-aligned" datetime="2013-08-02">02.08.2013</time>
-                </div>
-                <div><h2 class="left-aligned">Title 2</h2></div>
-                <div>
-
-                    <div class="myapp-times-played-wrapper">
-                        <img class="myapp-times-played-img left-aligned"
-                             src="css/img/png/play_arrow_FILL0_wght400_GRAD0_opsz24.png" alt="play arrow">
-                        <p class="left-aligned myapp-times-played-txt">0</p>
-                    </div>
-
-                    <button class="myapp-li-options-img  right-aligned"></button>
-                </div>
-            </div>
-
-        </li>
-        <li>
-            <img class="left-aligned" src="data/img/jpeg/300_100.jpeg" alt="album cover">
-            <div class="myapp-li-information-wrapper">
-                <div>
-                    <a href="https://loremipsum.io" class="myapp-origin left-aligned">lorempixel.com</a>
-                    <time class="myapp-title-date right-aligned" datetime="2004-07-01">01.07.2004</time>
-                </div>
-                <div><h2 class="left-aligned">Title 3</h2></div>
-                <div>
-
-                    <div class="myapp-times-played-wrapper">
-                        <img class="myapp-times-played-img left-aligned"
-                             src="css/img/png/play_arrow_FILL0_wght400_GRAD0_opsz24.png" alt="play arrow">
-                        <p class="left-aligned myapp-times-played-txt">0</p>
-                    </div>
-
-                    <button class="myapp-li-options-img  right-aligned"></button>
-                </div>
-            </div>
-        </li>
+        </template>
     </ul>
 </main>
 <footer>
     <button class="myapp-img-button logout-img left-aligned">logout</button>
-    <button class="myapp-img-button refresh-img right-aligned">refresh</button>
+    <button class="myapp-img-button refresh-img right-aligned" id="myapp-fadingTrigger">refresh</button>
 </footer>
 </body>
 </html>
