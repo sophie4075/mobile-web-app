@@ -1,6 +1,11 @@
 class ViewController {
 
     root;
+    titleArray;
+    ownerArray;
+    addedArray;
+    numOfTagsArray;
+    srcArray;
 
     constructor() {
 
@@ -10,12 +15,17 @@ class ViewController {
         this.prepareViewSwitching();
         this.prepareFading();
         this.prepareListInteraction();
+
+        ListOperations.loadAndDisplayListItems((items) => {
+            ListOperations.updateJSONArrays(items, this);
+            items.forEach(item => ListOperations.addNewListItem(this.root.querySelector("ul"), this.root.querySelector("template"), item));
+        });
     }
 
     prepareViewSwitching() {
         const switchElement = this.root.getElementsByTagName("header")[0];
 
-        console.log(switchElement);
+
 
         function changeViewButtonImage(element, tileViewVisibilty) {
             if (tileViewVisibilty === 'hidden') {
@@ -47,6 +57,17 @@ class ViewController {
 
 
                     break;
+                    
+                 case 'add':
+                    ListOperations.prepareAddingNewListItem(e,
+                        this.root.querySelector("ul"),this.root.querySelector("template"),
+                        this.titleArray,
+                        this.ownerArray, this.addedArray,
+                        this.numOfTagsArray,
+                        this.srcArray,
+                        (listRoot, dolly, obj) => ListOperations.addNewListItem(this.root.querySelector("ul"), this.root.querySelector("template"), obj));
+                    break;
+                    
                 default:
                     console.log("Sorry, nothing to handle here yet");
             }
@@ -62,8 +83,21 @@ class ViewController {
             fadingTarget.classList.toggle("myapp-faded");
 
             const onTransitioned = () => {
+                const ul = document.getElementById('track-list');
+                const items = ul.querySelectorAll('li');
+
+                items.forEach(item => {
+                    item.remove();
+                });
+                
                 fadingTarget.classList.toggle("myapp-faded");
                 fadingTarget.removeEventListener("transitionend", onTransitioned);
+
+                 ListOperations.loadAndDisplayListItems((items =>{
+                    ListOperations.updateJSONArrays(items, this);
+                        items.forEach(item => ListOperations.addNewListItem(this.root.querySelector("ul"), this.root.querySelector("template"), item));
+                    }
+                ));
             };
 
             fadingTarget.addEventListener("transitionend", onTransitioned);
