@@ -124,7 +124,10 @@ class ViewController {
 
             if (target.classList.contains('myapp-li-options-img')) {
                 const imgSrc = list.querySelector('img').src;
-                alert(`Titel: ${title}, Bild-URL: ${imgSrc}`);
+                //alert(`Titel: ${title}, Bild-URL: ${imgSrc}`);
+                if (confirm(`Would you like to remove: ${title} with image url: ${imgSrc} ?`)) {
+                    listElement.remove();
+                }
             } else {
                 alert(`Titel: ${title}`);
             }
