@@ -5,6 +5,7 @@ class ListOperations {
         li.querySelector("h2").textContent = obj.title;
         li.querySelector(".myapp-origin").textContent = obj.owner;
         li.querySelector("time").textContent = obj.added;
+        li.querySelector("time").dateTime = ListOperations.convertDate(obj.added);
         li.querySelector("p").textContent = obj.numOfTags;
         listRoot.appendChild(li);
     }
@@ -31,7 +32,9 @@ class ListOperations {
 
             const selectedTitle = titleArray[Date.now() % titleArray.length];
             const selectedOwner = ownerArray[Date.now() % ownerArray.length];
-            const addedTag = addedArray[Date.now() % addedArray.length];
+            //const addedTag = addedArray[Date.now() % addedArray.length];
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            const addedTag = new Date().toLocaleDateString('de-DE', options);
             const numberOfTags = numOfTagsArray[Date.now() % numOfTagsArray.length];
             const selectedSrc = srcArray[Date.now() % srcArray.length];
 
@@ -50,8 +53,12 @@ class ListOperations {
     static updateJSONArrays(responseItem, viewController) {
         viewController.titleArray = responseItem.map(e => e.title);
         viewController.ownerArray = responseItem.map(e => e.owner);
-        viewController.addedArray = responseItem.map(e => e.added);
         viewController.numOfTagsArray = responseItem.map(e => e.numOfTags);
         viewController.srcArray = responseItem.map(e => e.src);
+    }
+
+    static convertDate(date) {
+        const parts = date.split('.');
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
     }
 }
