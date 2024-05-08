@@ -1,6 +1,17 @@
-This is the first part of an assignment we had at university.
-We had to design an HTML document structure for the list view shown on the left and create CSS rules to implement the visual interface. This view is inspired by the list view from the SoundCloud app for Android shown on the right. It was sufficient if the appearance closely matched the template on the left in terms of colors and proportions of elements, as the template itself was developed based on the SoundCloud list view's appearance
+# List and Tile View Interface
+
+This project replicates and extends a list view interface inspired by the SoundCloud app for Android, incorporating both list and tile display modes with dynamic content loading and interactivity. 
+This interface was designed to closely match the template in terms of colors and proportions, while also supporting features for user interaction and dynamic data handling from a JSON source.
 
 ![image](https://github.com/sophie4075/mobile-web-app/assets/114300675/0028d67b-19ef-414d-9876-85a272e2159c)
 
-We then proceeded to adapt this list view into a tile view without altering the underlying HTML structure. The same DOM elements were used for both views, with differentiation achieved by simply assigning a suitable class to the root element. Additionally, we integrated a feature using the 'Tile'/'List' control to allow users to switch seamlessly between the two views. Further development included handling user interactions within the list view, which required dynamically building the interface based on a server-provided JSON array of objects. This dynamic construction also allowed for modifications through existing controls without altering the JSON structure, thus maintaining the integrity of the data while enhancing user engagement and interactivity.
+## Features
+
+- **Responsive List and Tile Views**: Implements a responsive list and a tile view using the same HTML and DOM elements.
+- **Dynamic Interaction**: Users can interact with list elements, with actions handled through JavaScript.
+- **Switchable Views**: Includes a toggle feature allowing users to switch between list and tile views dynamically.
+- **Dynamic Data Loading**: Dynamically builds the list view based on JSON data provided by a server.
+
+
+
+
